@@ -23,8 +23,9 @@ public class Game {
 		System.out.print("Lütfen bir isim giriniz ");
 		String playerName = scanner.nextLine();
 		Player player = new Player(playerName);
+		
 
-		System.out.println(player.getName() + " hoþ geldin! Lütfen bir karakter numarasý seç.");
+		System.out.println(player.getPlayerName() + " hoþ geldin! Lütfen bir karakter numarasý seç.");
 		player.selectChar();
 		System.out.println("Harika! Þimdi de bir lokasyon seç.");
 

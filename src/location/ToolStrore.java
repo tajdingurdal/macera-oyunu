@@ -61,7 +61,7 @@ public class ToolStrore extends NormalLocation {
 					getPlayer().getInventory().setWeaponDamage(wp[0].getDamage());
 					getPlayer().getInventory().setWeaponName(wp[0].getName());
 
-					System.out.println(getPlayer().getName() + " " + wp[0].getName()
+					System.out.println(getPlayer().getPlayerName() + " " + wp[0].getName()
 							+ " silahýný satýn aldýn.\nGüncel özelliklerin: ");
 
 					System.out.println("\n\t \033[0;31mHasar: " + getPlayer().getDamage() + "\u001B[0m"
@@ -81,7 +81,7 @@ public class ToolStrore extends NormalLocation {
 					getPlayer().getInventory().setWeaponDamage(wp[1].getDamage());
 					getPlayer().getInventory().setWeaponName(wp[1].getName());
 
-					System.out.println(getPlayer().getName() + " " + wp[1].getName()
+					System.out.println(getPlayer().getPlayerName() + " " + wp[1].getName()
 							+ " silahýný satýn aldýn.\nGüncel özelliklerin: ");
 
 					System.out.println("\n\t \033[0;31mHasar: " + getPlayer().getDamage() + "\u001B[0m"
@@ -101,7 +101,7 @@ public class ToolStrore extends NormalLocation {
 					getPlayer().getInventory().setWeaponDamage(wp[2].getDamage());
 					getPlayer().getInventory().setWeaponName(wp[2].getName());
 
-					System.out.println(getPlayer().getName() + " " + wp[2].getName()
+					System.out.println(getPlayer().getPlayerName() + " " + wp[2].getName()
 							+ " silahýný satýn aldýn.\nGüncel özelliklerin: ");
 
 					System.out.println("\n\t \033[0;31mHasar: " + getPlayer().getDamage() + "\u001B[0m"
@@ -146,7 +146,7 @@ public class ToolStrore extends NormalLocation {
 					getPlayer().getInventory().setArmorDefence(armr[0].getProtection());
 					getPlayer().getInventory().setArmorName(armr[0].getName());
 
-					System.out.println(getPlayer().getName() + " " + armr[0].getName()
+					System.out.println(getPlayer().getPlayerName() + " " + armr[0].getName()
 							+ " zýrhýný satýn aldýn.\nGüncel özelliklerin: ");
 
 					System.out.println("\n\t Hasar: " + getPlayer().getDamage() + "\n\t \033[0;31mSaðlýk: "
@@ -167,7 +167,7 @@ public class ToolStrore extends NormalLocation {
 					getPlayer().getInventory().setArmorDefence(armr[1].getProtection());
 					getPlayer().getInventory().setArmorName(armr[1].getName());
 
-					System.out.println(getPlayer().getName() + " " + armr[1].getName()
+					System.out.println(getPlayer().getPlayerName() + " " + armr[1].getName()
 							+ " zýrhýný satýn aldýn.\nGüncel özelliklerin: ");
 
 					System.out.println("\n\t Hasar: " + getPlayer().getDamage() + "\n\t \033[0;31mSaðlýk: "
@@ -188,7 +188,7 @@ public class ToolStrore extends NormalLocation {
 					getPlayer().getInventory().setArmorDefence(armr[2].getProtection());
 					getPlayer().getInventory().setArmorName(armr[2].getName());
 
-					System.out.println(getPlayer().getName() + " " + armr[2].getName()
+					System.out.println(getPlayer().getPlayerName() + " " + armr[2].getName()
 							+ " zýrhýný satýn aldýn.\nGüncel özelliklerin: ");
 
 					System.out.println("\n\t Hasar: " + getPlayer().getDamage() + "\n\t \033[0;31mSaðlýk: "

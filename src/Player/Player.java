@@ -1,5 +1,7 @@
 package player;
 
+import java.util.Scanner;
+
 import character.Archer;
 import character.GameChar;
 import character.Knight;
@@ -11,20 +13,54 @@ public class Player {
 	private int damage;
 	private int health;
 	private int money;
-	private String name;
+	private String charName;
+	private String playerName;
 
-	public Player(String name) {
+	public Player(String playerName) {
 		super();
 
-		this.name = name;
+		this.playerName = playerName;
 	}
 
 	public void selectChar() {
 		GameChar[] chr = { new Samurai(), new Archer(), new Knight() };
 		for (GameChar c : chr) {
 			System.out.println("\n\t" + c.getId() + ". " + c.getName() + "\n\t" + "Hasar: " + c.getDamage() + "\n\t"
-					+ "Saðlýk: " + c.getHealth() + "\n\t" + "Bakiye: " + c.getMoney() + "\n");
+					+ "Saglik: " + c.getHealth() + "\n\t" + "Bakiye: " + c.getMoney() + "\n");
 		}
+		Scanner scanner = new Scanner(System.in);
+
+		while (true) {
+
+			int select = scanner.nextInt();
+
+			if (select == 1) {
+				initPlayer(new Samurai());
+			} else if (select == 2) {
+				initPlayer(new Archer());
+			} else if (select == 3) {
+				initPlayer(new Knight());
+			} else {
+				System.out.print("Bir seçim yapmadýn. Lütfen bir seçim yap: ");
+			}
+
+			if (select == 1 || select == 2 || select == 3) {
+				System.out.println(this.getPlayerName() + " " + this.getCharName() + " karakterini seçtin\n\tHasar: "
+						+ this.getDamage() + "\n\tSaðlýk: " + this.getHealth() + "\n\tBakiye: " + this.getMoney()
+						+ "\n");
+				break;
+			}
+
+		}
+
+	}
+
+	private void initPlayer(GameChar chr) {
+		this.setCharName(chr.getName());
+		this.setDamage(chr.getDamage());
+		this.setHealth(chr.getHealth());
+		this.setMoney(chr.getMoney());
+		this.setInventory(new Inventory());
 
 	}
 
@@ -60,12 +96,20 @@ public class Player {
 		this.money = money;
 	}
 
-	public String getName() {
-		return name;
+	public String getCharName() {
+		return charName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCharName(String charName) {
+		this.charName = charName;
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 
 }
