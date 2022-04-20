@@ -1,17 +1,47 @@
-package Player;
+package player;
+
+import character.Archer;
+import character.GameChar;
+import character.Knight;
+import character.Samurai;
 
 public class Player {
 
-	public int health;
-	public CharWeaponMonster.Character character; // karakter
+	private Inventory inventory;
+	private int damage;
+	private int health;
+	private int money;
+	private String name;
 
-	public Player() {
+	public Player(String name) {
+		super();
+
+		this.name = name;
+	}
+
+	public void selectChar() {
+		GameChar[] chr = { new Samurai(), new Archer(), new Knight() };
+		for (GameChar c : chr) {
+			System.out.println("\n\t" + c.getId() + ". " + c.getName() + "\n\t" + "Hasar: " + c.getDamage() + "\n\t"
+					+ "Saðlýk: " + c.getHealth() + "\n\t" + "Bakiye: " + c.getMoney() + "\n");
+		}
 
 	}
 
-	public static Player createPlayer() {
-		Player player = new Player();
-		return player;
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 
 	public int getHealth() {
@@ -19,15 +49,23 @@ public class Player {
 	}
 
 	public void setHealth(int health) {
-		health = health;
+		this.health = health;
 	}
 
-	public CharWeaponMonster.Character getCharacter() {
-		return character;
+	public int getMoney() {
+		return money;
 	}
 
-	public void setCharacter(CharWeaponMonster.Character character) {
-		this.character = character;
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

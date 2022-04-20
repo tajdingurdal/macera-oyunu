@@ -12,12 +12,12 @@ import player.Player;
 
 public class Game {
 
-	private Scanner scanner = new Scanner(System.in);
+	private static Scanner scanner = new Scanner(System.in);
 
 	Player player;
 	Location location;
 
-	public void start() throws Exception {
+	public static void start() throws Exception {
 
 		System.out.println("Macera oyununa hoþ geldiniz.");
 		System.out.print("Lütfen bir isim giriniz ");
