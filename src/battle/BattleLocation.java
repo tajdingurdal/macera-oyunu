@@ -27,12 +27,46 @@ public abstract class BattleLocation extends Location {
 		String select = scanner.nextLine();
 
 		if (select.equals("S") || select.equals("s")) {
-			System.out.println("savaþ");
+			combat(random);
+
 		} else if (select.equals("K") || select.equals("k")) {
-			System.out.println("kaç");
+			System.out.print("Kaç");
 		}
 
 		return true;
+	}
+
+	private void combat(int random) {
+
+		for (int i = 1; i <= random; i++) {
+			playerStatus();
+			obstacleStatus();
+
+			while (this.getPlayer().getHealth() > 0 && this.getObstacle().getHealth() > 0) {
+				System.out.println("<V>ur ");
+				String vur = scanner.nextLine();
+
+				if (vur.equals("V") || vur.equals("v")) {
+					this.getObstacle().setHealth(getObstacle().getHealth() - getPlayer().getDamage());
+					System.out.println(getObstacle().getName() + " caný " + getPlayer().getDamage() + " azaldý");
+				}
+
+			}
+		}
+
+	}
+
+	private void obstacleStatus() {
+		System.out.println(this.getObstacle().getName() + " Özellikleri\n\033[31mHasar: "
+				+ this.getObstacle().getDamage() + "\nSaglik: " + this.getObstacle().getHealth() + "\nKazanc: "
+				+ this.getObstacle().getMoney() + "\033[0m");
+	}
+
+	private void playerStatus() {
+		System.out.println(this.getPlayer().getPlayerName() + " Özelliklerin\n\033[0;31mSagligin: "
+				+ this.getPlayer().getHealth() + "\nHasarýn: " + this.getPlayer().getDamage() + "\nSilahin: "
+				+ this.getPlayer().getInventory().getWeaponName() + "\nBakiyen: " + this.getPlayer().getMoney()
+				+ "\nZýrhýn: " + this.getPlayer().getInventory().getArmorName() + "\u001B[0m");
 	}
 
 	public int randomObstacle() {

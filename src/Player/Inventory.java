@@ -51,6 +51,9 @@ public class Inventory {
 	}
 
 	public String getWeaponName() {
+		if (weaponName == null) {
+			return "Silah yok";
+		}
 		return weaponName;
 	}
 
@@ -59,6 +62,9 @@ public class Inventory {
 	}
 
 	public String getArmorName() {
+		if (armorName == null) {
+			return "Zýrh yok";
+		}
 		return armorName;
 	}
 
@@ -67,6 +73,9 @@ public class Inventory {
 	}
 
 	public int getWeaponDamage() {
+		if (weaponDamage == 0) {
+			return 0;
+		}
 		return weaponDamage;
 	}
 
