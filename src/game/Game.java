@@ -46,6 +46,7 @@ public class Game {
 			} else if (select == 5) {
 				location = new River(player);
 			} else if (select == 6) {
+				System.out.println("Çýkýþ yapýldý");
 				break;
 			} else {
 				location = new SafeHouse(player);
