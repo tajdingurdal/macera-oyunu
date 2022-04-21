@@ -15,6 +15,7 @@ public class Player {
 	private int money;
 	private String charName;
 	private String playerName;
+	private int originalHealth;
 
 	public Player(String playerName) {
 		super();
@@ -45,7 +46,7 @@ public class Player {
 			}
 
 			if (select == 1 || select == 2 || select == 3) {
-				System.out.println(this.getPlayerName() + " " + this.getCharName() + " karakterini seçtin\n\tHasar: "
+				System.out.println(this.getPlayerName() + ", " + this.getCharName() + " karakterini seçtin\n\tHasar: "
 						+ this.getDamage() + "\n\tSaðlýk: " + this.getHealth() + "\n\tBakiye: " + this.getMoney()
 						+ "\n");
 				break;
@@ -61,6 +62,7 @@ public class Player {
 		this.setHealth(chr.getHealth());
 		this.setMoney(chr.getMoney());
 		this.setInventory(new Inventory());
+		this.setOriginalHealth(chr.getHealth());
 
 	}
 
@@ -81,10 +83,16 @@ public class Player {
 	}
 
 	public int getHealth() {
+		if (health < 0) {
+			return 0;
+		}
 		return health;
 	}
 
 	public void setHealth(int health) {
+		if (health < 0) {
+			health = 0;
+		}
 		this.health = health;
 	}
 
@@ -110,6 +118,14 @@ public class Player {
 
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
+	}
+
+	public int getOriginalHealth() {
+		return originalHealth;
+	}
+
+	public void setOriginalHealth(int originalHealth) {
+		this.originalHealth = originalHealth;
 	}
 
 }

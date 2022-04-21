@@ -23,7 +23,6 @@ public class Game {
 		System.out.print("Lütfen bir isim giriniz ");
 		String playerName = scanner.nextLine();
 		Player player = new Player(playerName);
-		
 
 		System.out.println(player.getPlayerName() + " hoþ geldin! Lütfen bir karakter numarasý seç.");
 		player.selectChar();
@@ -40,10 +39,22 @@ public class Game {
 			} else if (select == 2) {
 				location = new ToolStrore(player);
 			} else if (select == 3) {
+				if (player.getInventory().isFood() == true) {
+					System.out.println("Burada ki görevini tamamlamýþtýn");
+					continue;
+				}
 				location = new Cave(player);
 			} else if (select == 4) {
+				if (player.getInventory().isFirewoord() == true) {
+					System.out.println("Burada ki görevini tamamlamýþtýn");
+					continue;
+				}
 				location = new Forest(player);
 			} else if (select == 5) {
+				if (player.getInventory().isWater() == true) {
+					System.out.println("Burada ki görevini tamamlamýþtýn");
+					continue;
+				}
 				location = new River(player);
 			} else if (select == 6) {
 				System.out.println("Çýkýþ yapýldý");
@@ -53,7 +64,7 @@ public class Game {
 			}
 
 			if (!location.onLocation()) {
-				System.out.println("Öldün kanka, oyun bitti");
+				System.out.println("\t\033[31mÖldün! Oyun bitti\033[0m");
 				break;
 			}
 		}

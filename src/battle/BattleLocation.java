@@ -27,18 +27,31 @@ public abstract class BattleLocation extends Location {
 		String select = scanner.nextLine();
 
 		if (select.equals("S") || select.equals("s")) {
-			combat(random);
+			if (combat(random)) {
+				System.out.println(getPlayer().getPlayerName() + " Tebrikler! Tüm " + getObstacle().getName()
+						+ "'leri öldürdün. Görev ödülün " + getAward());
+				getPlayer().getInventory().setFood(true);
+				getPlayer().setMoney((int) (getPlayer().getMoney() + getObstacle().getMoney() * random));
+				playerStatus();
+				return true;
+			}
 
 		} else if (select.equals("K") || select.equals("k")) {
-			System.out.print("Kaç");
+			System.out.print("Kaçtýn " + getPlayer().getPlayerName());
+		}
+
+		if (getPlayer().getHealth() <= 0) {
+			return false;
 		}
 
 		return true;
 	}
 
-	private void combat(int random) {
+	private boolean combat(int random) {
 
 		for (int i = 1; i <= random; i++) {
+			this.getObstacle().setHealth(getObstacle().getOriginalHealth());
+
 			playerStatus();
 			obstacleStatus();
 
@@ -48,25 +61,59 @@ public abstract class BattleLocation extends Location {
 
 				if (vur.equals("V") || vur.equals("v")) {
 					this.getObstacle().setHealth(getObstacle().getHealth() - getPlayer().getDamage());
-					System.out.println(getObstacle().getName() + " caný " + getPlayer().getDamage() + " azaldý");
+					System.out.println(
+							i + ". " + getObstacle().getName() + " caný " + getPlayer().getDamage() + " azaldý");
+					afterHit();
+
+					if (getObstacle().getHealth() > 0) {
+
+						System.out
+								.println("\033[31m" + i + ". " + getObstacle().getName() + " de size vuruyor!\033[0m");
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						getPlayer().setHealth(getPlayer().getHealth() - getObstacle().getDamage());
+						afterHit();
+						if (getPlayer().getHealth() == 0) {
+							return false;
+						}
+
+					} else if (getPlayer().getHealth() <= 0) {
+						return false;
+					} else {
+
+						System.out.println(getObstacle().getName() + "\033[31m öldürdün!\033[0m Ödülün: "
+								+ getObstacle().getMoney() + " coin");
+
+					}
+
 				}
 
 			}
 		}
+		return true;
+
+	}
+
+	private void afterHit() {
+		System.out.println(getPlayer().getPlayerName() + " güncel canýn: " + getPlayer().getHealth() + "\nVe "
+				+ getObstacle().getName() + " güncel caný: " + getObstacle().getHealth());
 
 	}
 
 	private void obstacleStatus() {
 		System.out.println(this.getObstacle().getName() + " Özellikleri\n\033[31mHasar: "
 				+ this.getObstacle().getDamage() + "\nSaglik: " + this.getObstacle().getHealth() + "\nKazanc: "
-				+ this.getObstacle().getMoney() + "\033[0m");
+				+ this.getObstacle().getMoney() + "\033[0m" + "\n");
 	}
 
 	private void playerStatus() {
-		System.out.println(this.getPlayer().getPlayerName() + " Özelliklerin\n\033[0;31mSagligin: "
+		System.out.println(this.getPlayer().getPlayerName() + " Güncel Özelliklerin\n\033[0;31mSagligin: "
 				+ this.getPlayer().getHealth() + "\nHasarýn: " + this.getPlayer().getDamage() + "\nSilahin: "
 				+ this.getPlayer().getInventory().getWeaponName() + "\nBakiyen: " + this.getPlayer().getMoney()
-				+ "\nZýrhýn: " + this.getPlayer().getInventory().getArmorName() + "\u001B[0m");
+				+ "\nZýrhýn: " + this.getPlayer().getInventory().getArmorName() + "\u001B[0m" + "\n");
 	}
 
 	public int randomObstacle() {

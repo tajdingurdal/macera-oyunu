@@ -7,13 +7,14 @@ public class Obstacle {
 	private int damage;
 	private int health;
 	private int money;
+	private int originalHealth;
 
 	public Obstacle(String name, int id, int damage, int health, int money) {
 		super();
 		this.name = name;
 		this.id = id;
 		this.damage = damage;
-		this.health = health;
+		this.originalHealth = health;
 		this.money = money;
 	}
 
@@ -34,10 +35,17 @@ public class Obstacle {
 	}
 
 	public int getHealth() {
+		if (health < 0) {
+			this.health = 0;
+		}
 		return health;
 	}
 
 	public void setHealth(int health) {
+
+		if (health < 0) {
+			this.health = 0;
+		}
 		this.health = health;
 	}
 
@@ -55,6 +63,14 @@ public class Obstacle {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getOriginalHealth() {
+		return originalHealth;
+	}
+
+	public void setOriginalHealth(int originalHealth) {
+		this.originalHealth = originalHealth;
 	}
 
 }
