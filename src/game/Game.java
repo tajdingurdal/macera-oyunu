@@ -2,9 +2,10 @@ package game;
 
 import java.util.Scanner;
 
-import battle.Cave;
-import battle.Forest;
-import battle.River;
+import battle.battleLocation.Cave;
+import battle.battleLocation.Forest;
+import battle.battleLocation.Metal;
+import battle.battleLocation.River;
 import location.Location;
 import location.SafeHouse;
 import location.ToolStrore;
@@ -31,7 +32,8 @@ public class Game {
 		Location location = null;
 		while (true) {
 
-			System.out.println("\n\t1. SafeHouse\n\t2. ToolStore\n\t3. Maðara\n\t4. Orman\n\t5. Nehir\n\t6. Çýkýþ");
+			System.out.println(
+					"\n\t1. SafeHouse\n\t2. ToolStore\n\t3. Maðara\n\t4. Orman\n\t5. Nehir\n\t6. Maden\n\t7. Çýkýþ");
 			int select = scanner.nextInt();
 
 			if (select == 1) {
@@ -57,6 +59,12 @@ public class Game {
 				}
 				location = new River(player);
 			} else if (select == 6) {
+				if (player.getInventory().isAwardSnake() == true) {
+					System.out.println("Burada ki görevini tamamlamýþtýn");
+					continue;
+				}
+				location = new Metal(player);
+			} else if (select == 7) {
 				System.out.println("Çýkýþ yapýldý");
 				break;
 			} else {
@@ -64,6 +72,9 @@ public class Game {
 			}
 
 			if (!location.onLocation()) {
+				if (select == 1) {
+					break;
+				}
 				System.out.println("\t\033[31mÖldün! Oyun bitti\033[0m");
 				break;
 			}

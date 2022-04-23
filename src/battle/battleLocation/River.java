@@ -1,5 +1,6 @@
-package battle;
+package battle.battleLocation;
 
+import battle.obstacle.Bear;
 import player.Player;
 
 public class River extends BattleLocation {

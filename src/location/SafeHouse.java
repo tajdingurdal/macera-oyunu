@@ -13,8 +13,9 @@ public class SafeHouse extends NormalLocation {
 		System.out.println("Þuan da güvenli evdesiniz.");
 
 		if (getPlayer().getInventory().isFirewoord() == true && getPlayer().getInventory().isFood() == true
-				&& getPlayer().getInventory().isWater() == true) {
+				&& getPlayer().getInventory().isWater() == true && getPlayer().getInventory().isAwardSnake() == true) {
 			System.out.println("Oyunu bitirdiniz, tebrikler!");
+			return false;
 		}
 
 		if (getPlayer().getHealth() >= this.getPlayer().getOriginalHealth()) {

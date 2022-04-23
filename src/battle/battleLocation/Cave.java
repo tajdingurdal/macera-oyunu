@@ -1,5 +1,6 @@
-package battle;
+package battle.battleLocation;
 
+import battle.obstacle.Zombie;
 import player.Player;
 
 public class Cave extends BattleLocation {

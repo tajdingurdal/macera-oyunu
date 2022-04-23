@@ -2,6 +2,7 @@ package player;
 
 public class Inventory {
 
+	private boolean awardSnake;
 	private boolean water;
 	private boolean food;
 	private boolean firewoord;
@@ -89,6 +90,14 @@ public class Inventory {
 
 	public void setArmorDefence(int armorDefence) {
 		this.armorDefence = armorDefence;
+	}
+
+	public boolean isAwardSnake() {
+		return awardSnake;
+	}
+
+	public void setAwardSnake(boolean awardSnake) {
+		this.awardSnake = awardSnake;
 	}
 
 }

@@ -1,4 +1,4 @@
-package battle;
+package battle.obstacle;
 
 public class Bear extends Obstacle {
 

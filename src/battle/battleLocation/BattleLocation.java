@@ -1,7 +1,8 @@
-package battle;
+package battle.battleLocation;
 
 import java.util.Random;
 
+import battle.obstacle.Obstacle;
 import location.Location;
 import player.Player;
 
@@ -30,7 +31,20 @@ public abstract class BattleLocation extends Location {
 			if (combat(random)) {
 				System.out.println(getPlayer().getPlayerName() + " Tebrikler! Tüm " + getObstacle().getName()
 						+ "'leri öldürdün. Görev ödülün " + getAward());
-				getPlayer().getInventory().setFood(true);
+
+				if (obstacle.getName().equals("Zombi")) {
+					getPlayer().getInventory().setFood(true);
+				}
+				if (obstacle.getName().equals("Vampir")) {
+					getPlayer().getInventory().setFirewoord(true);
+				}
+				if (obstacle.getName().equals("Ayý")) {
+					getPlayer().getInventory().setWater(true);
+				}
+				if (obstacle.getName().equals("Yýlan")) {
+					getPlayer().getInventory().setAwardSnake(true);
+				}
+
 				getPlayer().setMoney((int) (getPlayer().getMoney() + getObstacle().getMoney() * random));
 				playerStatus();
 				return true;
@@ -49,6 +63,9 @@ public abstract class BattleLocation extends Location {
 
 	private boolean combat(int random) {
 
+		Random r = new Random();
+		int olasýlýk = (r.nextInt(2) + 1);
+
 		for (int i = 1; i <= random; i++) {
 			this.getObstacle().setHealth(getObstacle().getOriginalHealth());
 
@@ -56,6 +73,20 @@ public abstract class BattleLocation extends Location {
 			obstacleStatus();
 
 			while (this.getPlayer().getHealth() > 0 && this.getObstacle().getHealth() > 0) {
+				if (olasýlýk == 1) {
+
+					System.out.println("\033[31m" + i + ". " + getObstacle().getName() + " de size vuruyor!\033[0m");
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					getPlayer().setHealth(getPlayer().getHealth() - getObstacle().getDamage());
+					afterHit();
+					if (getPlayer().getHealth() == 0) {
+						return false;
+					}
+				}
 				System.out.println("<V>ur ");
 				String vur = scanner.nextLine();
 

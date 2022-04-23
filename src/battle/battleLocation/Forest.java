@@ -1,5 +1,6 @@
-package battle;
+package battle.battleLocation;
 
+import battle.obstacle.Vampire;
 import player.Player;
 
 public class Forest extends BattleLocation {

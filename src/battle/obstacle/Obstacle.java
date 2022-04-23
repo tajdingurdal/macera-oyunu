@@ -1,4 +1,4 @@
-package battle;
+package battle.obstacle;
 
 public class Obstacle {
 
@@ -10,7 +10,7 @@ public class Obstacle {
 	private int originalHealth;
 
 	public Obstacle(String name, int id, int damage, int health, int money) {
-		super();
+
 		this.name = name;
 		this.id = id;
 		this.damage = damage;
