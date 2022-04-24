@@ -23,6 +23,7 @@ public class Player {
 		this.playerName = playerName;
 	}
 
+	@SuppressWarnings("finally")
 	public void selectChar() {
 		GameChar[] chr = { new Samurai(), new Archer(), new Knight() };
 		for (GameChar c : chr) {
@@ -32,25 +33,31 @@ public class Player {
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
+			try {
 
-			int select = scanner.nextInt();
+				int select = scanner.nextInt();
 
-			if (select == 1) {
-				initPlayer(new Samurai());
-			} else if (select == 2) {
-				initPlayer(new Archer());
-			} else if (select == 3) {
-				initPlayer(new Knight());
-			} else {
-				System.out.print("Bir seçim yapmadýn. Lütfen bir seçim yap: ");
-			}
+				if (select == 1) {
+					initPlayer(new Samurai());
+				} else if (select == 2) {
+					initPlayer(new Archer());
+				} else if (select == 3) {
+					initPlayer(new Knight());
+				} else {
+					System.out.print("Bir seçim yapmadýn. Lütfen bir seçim yap: ");
+				}
 
-			if (select == 1 || select == 2 || select == 3) {
-				System.out.println(this.getPlayerName() + ", " + this.getCharName() + " karakterini seçtin\n\tHasar: "
-						+ this.getDamage() + "\n\tSaðlýk: " + this.getHealth() + "\n\tBakiye: " + this.getMoney()
-						+ "\n");
+				if (select == 1 || select == 2 || select == 3) {
+					System.out.println(this.getPlayerName() + ", " + this.getCharName()
+							+ " karakterini seçtin\n\tHasar: " + this.getDamage() + "\n\tSaðlýk: " + this.getHealth()
+							+ "\n\tBakiye: " + this.getMoney() + "\n");
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println("Lütfen doðru seçeneði girin.");
 				break;
-			}
+
+			} 
 
 		}
 
